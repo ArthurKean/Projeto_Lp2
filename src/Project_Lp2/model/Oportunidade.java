@@ -1,0 +1,153 @@
+package Project_Lp2.model;
+
+import Project_Lp2.model.Enums.StatusOportunidade;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oportunidade {
+    private String titulo;
+    private String descricao;
+    private TipoOportunidade tipo;
+    private Modalidade modalidade;
+    private int carga_horaria;
+    private int vagas;
+    private StatusOportunidade status;
+    private LocalDate inicio;
+    private LocalDate fim;
+    private Usuario autor;
+    private Docente responsavel;
+    private String planoAtividades;
+    private List<Inscricao> inscricoes;
+
+    public Oportunidade(String titulo, String descricao,
+                        TipoOportunidade tipo, Modalidade modalidade,
+                        int carga_horaria, int vagas,
+                        LocalDate inicio, LocalDate fim,
+                        Usuario autor, Docente responsavel) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.tipo = tipo;
+        this.modalidade = modalidade;
+        this.carga_horaria = carga_horaria;
+        this.vagas = vagas;
+        this.inicio = inicio;
+        this.fim = fim;
+        this.autor = autor;
+        this.responsavel = responsavel;
+        this.status = StatusOportunidade.RASCUNHO;
+        this.inscricoes = new ArrayList<>();
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public TipoOportunidade getTipo() {
+        return tipo;
+    }
+    public Modalidade getModalidade() {
+        return modalidade;
+    }
+
+    public int getCarga_horaria() {
+        return carga_horaria;
+    }
+
+    public int getVagas() {
+        return vagas;
+    }
+    public void setVagas(int vagas) {
+        this.vagas = vagas;
+    }
+
+    public StatusOportunidade getStatus() {
+        return status;
+    }
+    public void setStatus(StatusOportunidade status) {
+        this.status = status;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+    public LocalDate getFim() {
+        return fim;
+    }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public Docente getResponsavel() {
+        return responsavel;
+    }
+    public void setResponsavel(Docente responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public String getPlanoAtividades() {
+        return planoAtividades;
+    }
+    public void setPlanoAtividades(String planoAtividades) {
+        this.planoAtividades = planoAtividades;
+    }
+
+    public List<Inscricao> getInscricoes() {
+        return inscricoes;
+    }
+
+    public void publicar() {
+        if (status != StatusOportunidade.RASCUNHO && status != statusOportunidade.AGURADANDO_APROVACAO){
+            throw new IllegalStateException(
+                    "So eh possivel publicar a partir de um RASCUNHO ou AGUARDANDO_APROVACAO" +
+                    "Status atual: " + status
+            );
+        }
+        this.status = StatusOportunidade.PUBLICADA;
+    }
+
+    public void fecharInscricoes(){
+        if (status != StatusOportunidade.ABERTA){
+            throw new IllegalStateException(
+                    "So eh possivel fechas as inscricoes com status ABERTA" +
+                    "Status atual: " + status
+            );
+        }
+        this.status = StatusOportunidade.EM_EXECUCAO;
+    }
+
+    public void encerrar(){
+        if (status == StatusOportunidade.ENCERRADA){
+            throw new IllegalStateException(
+                    "Nao eh possivel cancelar uma oportunidade ja finalizada"
+            );
+        }
+        this.status = StatusOportunidade.CANCELADA;
+    }
+
+    public boolean temVagasDisponiveis(){
+        long aprovadas = 0;
+        for (Inscricao i : inscricoes){
+            if (i.getStatus() == StatusInscricao.APROVADA){
+                aprovadas++;
+            }
+        }
+        return aprovadas < vagas;
+    }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+}
