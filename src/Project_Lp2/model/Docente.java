@@ -1,6 +1,9 @@
 package Project_Lp2.model;
 
 import Project_Lp2.model.enums.Papel;
+import Project_Lp2.model.enums.TipoOportunidade;
+import Project_Lp2.model.enums.Modalidade;
+import java.time.LocalDate;
 
 public class Docente extends Usuario {
 
@@ -16,10 +19,9 @@ public class Docente extends Usuario {
     }
 
     public Oportunidade criarOportunidade(String titulo, String descricao,
-                                          Project_Lp2.model.enums.TipoOportunidade tipo, 
-                                          Project_Lp2.model.enums.Modalidade modalidade,
+                                          TipoOportunidade tipo, Modalidade modalidade,
                                           int carga_horaria, int vagas,
-                                          java.time.LocalDate inicio, java.time.LocalDate fim,
+                                          LocalDate inicio, LocalDate fim,
                                           Docente responsavel) {
         return new Oportunidade(titulo, descricao, tipo, modalidade, 
                                 carga_horaria, vagas, inicio, fim, this, responsavel);
@@ -28,6 +30,7 @@ public class Docente extends Usuario {
     public void registrarPlanoAtividades(Oportunidade oportunidade, String data) {
         System.out.println("Plano de atividades registradaa para a oportunidade em " + data);
     }
+
     public String getSiape() {
         return siape;
     }

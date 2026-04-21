@@ -15,12 +15,6 @@ public class Certificado {
     private String certificadoPath;
     private StatusAssinatura statusAssinatura;
 
-    public Certificado() {
-        this.uuidHash = UUID.randomUUID().toString();
-        this.dataEmissao = LocalDate.now();
-        this.statusAssinatura = StatusAssinatura.PENDENTE;
-    }
-
     public Certificado(Discente discente, Oportunidade oportunidade,
                        int horas, String certificadoPath) {
         this.uuidHash = UUID.randomUUID().toString();
@@ -34,7 +28,7 @@ public class Certificado {
 
     public String gerarQRCode() {
         if (discente == null || oportunidade == null) {
-            System.out.println("[ERRO] Não é possível gerar QR Code: discente ou oportunidade não informados.");
+            System.out.println("Não da pra gerar o QR Code: dicente ou oportunidade invalidos");
             return null;
         }
 
@@ -44,7 +38,7 @@ public class Certificado {
                 + "|MATRICULA:" + discente.getMatricula()
                 + "|OPORTUNIDADE:" + oportunidade.getTitulo()
                 + "|HORAS:" + horas
-                + "|EMISSAO:" + dataEmissao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + "|EMISSAAO:" + dataEmissao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + "|STATUS:" + statusAssinatura.name();
 
         System.out.println("=========================================");
@@ -58,16 +52,16 @@ public class Certificado {
 
     public boolean verificarAutenticidade(String hash) {
         if (hash == null || hash.trim().isEmpty()) {
-            System.out.println("[AVISO] Hash informado é nulo ou vazio.");
+            System.out.println("Hash informado eh invalido");
             return false;
         }
 
         boolean autentico = this.uuidHash.equals(hash);
 
         if (autentico) {
-            System.out.println("[OK] Certificado AUTÊNTICO. Hash verificado com sucesso.");
+            System.out.println("Certificado valido");
         } else {
-            System.out.println("[FALHA] Certificado INVÁLIDO. Hash não corresponde ao registro.");
+            System.out.println("Certificado invalido");
         }
 
         return autentico;
@@ -76,7 +70,6 @@ public class Certificado {
     public String getUuidHash() {
         return uuidHash;
     }
-
     public void setUuidHash(String uuidHash) {
         this.uuidHash = uuidHash;
     }
@@ -84,7 +77,6 @@ public class Certificado {
     public Discente getDiscente() {
         return discente;
     }
-
     public void setDiscente(Discente discente) {
         this.discente = discente;
     }
@@ -92,7 +84,6 @@ public class Certificado {
     public Oportunidade getOportunidade() {
         return oportunidade;
     }
-
     public void setOportunidade(Oportunidade oportunidade) {
         this.oportunidade = oportunidade;
     }
@@ -100,7 +91,6 @@ public class Certificado {
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
-
     public void setDataEmissao(LocalDate dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
@@ -108,7 +98,6 @@ public class Certificado {
     public int getHoras() {
         return horas;
     }
-
     public void setHoras(int horas) {
         this.horas = horas;
     }
@@ -116,7 +105,6 @@ public class Certificado {
     public String getCertificadoPath() {
         return certificadoPath;
     }
-
     public void setCertificadoPath(String certificadoPath) {
         this.certificadoPath = certificadoPath;
     }
@@ -124,7 +112,6 @@ public class Certificado {
     public StatusAssinatura getStatusAssinatura() {
         return statusAssinatura;
     }
-
     public void setStatusAssinatura(StatusAssinatura statusAssinatura) {
         this.statusAssinatura = statusAssinatura;
     }

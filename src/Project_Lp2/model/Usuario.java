@@ -1,7 +1,6 @@
 package Project_Lp2.model;
 
 import Project_Lp2.model.enums.Papel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,9 +56,8 @@ public class Usuario {
 
     public void mudarSenha(String novaSenha) {
         if (novaSenha == null || novaSenha.length() < 8){
-            throw new IllegalArgumentException(
-                    "A senha deve ter pelo menos 8 caracteres"
-            );
+            System.out.println("Deu errado: A senha precisa ter pelo menos 8 caracteres!");
+            return;
         }
         this.senha = novaSenha;
     }
@@ -76,6 +74,11 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", papel=" + papel +
+                ", ativo=" + ativo +
+                '}';
     }
 }

@@ -6,17 +6,17 @@ import Project_Lp2.model.enums.StatusMatricula;
 public class Discente extends Usuario{
 
     private String matricula;
-    private int semestre_atual;
+    private int semestreAtual;
     private Curso curso;
     private StatusMatricula statusMatricula;
 
     public Discente(String nome, String email,
                     String senha, Papel papel,
-                    String matricula, int semestre_atual,
+                    String matricula, int semestreAtual,
                     Curso curso) {
         super(nome, email, senha, papel);
         this.matricula = matricula;
-        this.semestre_atual = semestre_atual;
+        this.semestreAtual = semestreAtual;
         this.curso = curso;
         this.statusMatricula = StatusMatricula.ATIVO;
     }
@@ -24,27 +24,24 @@ public class Discente extends Usuario{
     public void mudarCurso(Curso novoCurso) {
         this.curso = novoCurso;
     }
-
+    
     public String getMatricula() {
         return matricula;
     }
-
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
     public int getSemestre_atual() {
-        return semestre_atual;
+        return semestreAtual;
     }
-
-    public void setSemestre_atual(int semestre_atual) {
-        this.semestre_atual = semestre_atual;
+    public void setSemestre_atual(int semestreAtual) {
+        this.semestreAtual = semestreAtual;
     }
 
     public Curso getCurso() {
         return curso;
     }
-
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
@@ -52,8 +49,14 @@ public class Discente extends Usuario{
     public StatusMatricula getStatusMatricula() {
         return statusMatricula;
     }
-
     public void setStatusMatricula(StatusMatricula statusMatricula) {
         this.statusMatricula = statusMatricula;
+    }
+    @Override
+    public String toString() {
+        return "Discente [matricula=" + matricula + 
+               ", semestre_atual=" + semestreAtual +
+               ", curso=" + curso + 
+               ", statusMatricula=" + statusMatricula + "]";
     }
 }

@@ -113,31 +113,26 @@ public class Oportunidade {
 
     public void publicar() {
         if (status != StatusOportunidade.RASCUNHO && status != StatusOportunidade.AGUARDANDO_APROVACAO){
-            throw new IllegalStateException(
-                    "So eh possivel publicar a partir de um RASCUNHO ou AGUARDANDO_APROVACAO" +
-                    "Status atual: " + status
-            );
+            System.out.println("ERRO! Só pode publicar se for Rascunho ou Aguardando Aprovaçao");
+            return;
         }
         this.status = StatusOportunidade.PUBLICADA;
     }
 
     public void fecharInscricoes(){
         if (status != StatusOportunidade.ABERTA){
-            throw new IllegalStateException(
-                    "So eh possivel fechas as inscricoes com status ABERTA" +
-                    "Status atual: " + status
-            );
+            System.out.println("EERO! Só dá pra fechar a inscrição se o status for aberta");
+            return;
         }
         this.status = StatusOportunidade.EM_EXECUCAO;
     }
 
     public void encerrar(){
         if (status == StatusOportunidade.ENCERRADA){
-            throw new IllegalStateException(
-                    "Nao eh possivel cancelar uma oportunidade ja finalizada"
-            );
+            System.out.println("Essa oportunidade já acabou antes.");
+            return;
         }
-        this.status = StatusOportunidade.CANCELADA;
+        this.status = StatusOportunidade.ENCERRADA;
     }
 
     public boolean temVagasDisponiveis(){
@@ -149,8 +144,18 @@ public class Oportunidade {
         }
         return aprovadas < vagas;
     }
+
     @Override
     public String toString() {
-        return super.toString();
+        return "Oportunidade{" +
+                "titulo='" + titulo + '\'' +
+                ", tipo=" + tipo +
+                ", modalidade=" + modalidade +
+                ", carga_horaria=" + carga_horaria +
+                ", vagas=" + vagas +
+                ", status=" + status +
+                ", inicio=" + inicio +
+                ", fim=" + fim +
+                '}';
     }
 }

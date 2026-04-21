@@ -13,10 +13,6 @@ public class Curso {
     private String versaoPpc;
     private List<Discente> discentes;
 
-    public Curso() {
-        this.discentes = new ArrayList<>();
-    }
-
     public Curso(String nome,
                  int codigo,
                  int cargaHoraria,
@@ -30,25 +26,21 @@ public class Curso {
 
     public void atualizarPPC(int horas, String versao) {
         if (horas <= 0) {
-            System.out.println("[ERRO] Carga horária inválida. Deve ser maior que zero.");
-            return;
-        }
-        if (versao == null || versao.trim().isEmpty()) {
-            System.out.println("[ERRO] Versão do PPC inválida. Não pode ser vazia.");
+            System.out.println("Carga horária inválida");
             return;
         }
         this.cargaHoraria = horas;
         this.versaoPpc = versao;
-        System.out.println("[OK] PPC atualizado com sucesso!");
-        System.out.println("  -> Nova carga horária : " + this.cargaHoraria + " horas");
-        System.out.println("  -> Nova versão do PPC : " + this.versaoPpc);
+        System.out.println("PPC atualizado com sucesso!");
+        System.out.println("  - Nova carga horária : " + this.cargaHoraria + " horas");
+        System.out.println("  - Nova versão do PPC : " + this.versaoPpc);
     }
 
     public List<Discente> listarAlunosPorStatus(StatusMatricula status) {
         List<Discente> resultado = new ArrayList<>();
 
         if (status == null) {
-            System.out.println("[AVISO] Status informado é nulo. Retornando lista vazia.");
+            System.out.println("Status informado eh invalido");
             return resultado;
         }
 
@@ -62,7 +54,7 @@ public class Curso {
 
     public void adicionarDiscente(Discente discente) {
         if (discente == null) {
-            System.out.println("[AVISO] Discente nulo. Operação ignorada.");
+            System.out.println("Discente invalido");
             return;
         }
         this.discentes.add(discente);
@@ -71,7 +63,6 @@ public class Curso {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -79,7 +70,6 @@ public class Curso {
     public int getCodigo() {
         return codigo;
     }
-
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -87,7 +77,6 @@ public class Curso {
     public int getCargaHoraria() {
         return cargaHoraria;
     }
-
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
@@ -95,7 +84,6 @@ public class Curso {
     public String getVersaoPpc() {
         return versaoPpc;
     }
-
     public void setVersaoPpc(String versaoPpc) {
         this.versaoPpc = versaoPpc;
     }
@@ -103,7 +91,6 @@ public class Curso {
     public List<Discente> getDiscentes() {
         return discentes;
     }
-
     public void setDiscentes(List<Discente> discentes) {
         this.discentes = discentes;
     }

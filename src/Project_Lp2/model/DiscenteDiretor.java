@@ -1,6 +1,9 @@
 package Project_Lp2.model;
 
 import Project_Lp2.model.enums.Papel;
+import Project_Lp2.model.enums.TipoOportunidade;
+import Project_Lp2.model.enums.Modalidade;
+import java.time.LocalDate;
 
 import java.util.Date;
 
@@ -8,25 +11,24 @@ public class DiscenteDiretor extends Discente {
 
     private Grupo grupo;
     private String cargo;
-    private Date data_inicio;
-    private Date data_fim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
 
     public DiscenteDiretor(String nome, String email, String senha,
                            Papel papel, String matricula, int semestre_atual,
                            Curso curso, Grupo grupo, String cargo,
-                           Date data_inicio, Date data_fim) {
+                           LocalDate dataInicio, LocalDate dataFim) {
         super(nome, email, senha, papel, matricula, semestre_atual, curso);
         this.grupo = grupo;
         this.cargo = cargo;
-        this.data_inicio = data_inicio;
-        this.data_fim = data_fim;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
 
     public Oportunidade criarOportunidade(String titulo, String descricao,
-                                          Project_Lp2.model.enums.TipoOportunidade tipo, 
-                                          Project_Lp2.model.enums.Modalidade modalidade,
+                                          TipoOportunidade tipo, Modalidade modalidade,
                                           int carga_horaria, int vagas,
-                                          java.time.LocalDate inicio, java.time.LocalDate fim,
+                                          LocalDate inicio, LocalDate fim,
                                           Docente responsavel) {
         return new Oportunidade(titulo, descricao, tipo, modalidade, 
                                 carga_horaria, vagas, inicio, fim, this, responsavel);
@@ -35,7 +37,6 @@ public class DiscenteDiretor extends Discente {
     public Grupo getGrupo() {
         return grupo;
     }
-
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
@@ -43,24 +44,21 @@ public class DiscenteDiretor extends Discente {
     public String getCargo() {
         return cargo;
     }
-
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
-    public Date getData_inicio() {
-        return data_inicio;
+    public LocalDate getData_inicio() {
+        return dataInicio;
+    }
+    public void setData_inicio(LocalDate data_inicio) {
+        this.dataInicio = data_inicio;
     }
 
-    public void setData_inicio(Date data_inicio) {
-        this.data_inicio = data_inicio;
+    public LocalDate getData_fim() {
+        return dataFim;
     }
-
-    public Date getData_fim() {
-        return data_fim;
-    }
-
-    public void setData_fim(Date data_fim) {
-        this.data_fim = data_fim;
+    public void setData_fim(LocalDate data_fim) {
+        this.dataFim = data_fim;
     }
 }
