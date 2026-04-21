@@ -1,4 +1,121 @@
 package Project_Lp2.model;
 
+import Project_Lp2.model.enums.StatusMatricula;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Curso {
+
+    private String nome;
+    private int codigo;
+    private int cargaHoraria;
+    private String versaoPpc;
+    private List<Discente> discentes;
+
+    public Curso() {
+        this.discentes = new ArrayList<>();
+    }
+
+    public Curso(String nome,
+                 int codigo,
+                 int cargaHoraria,
+                 String versaoPpc) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.cargaHoraria = cargaHoraria;
+        this.versaoPpc = versaoPpc;
+        this.discentes = new ArrayList<>();
+    }
+
+    public void atualizarPPC(int horas, String versao) {
+        if (horas <= 0) {
+            System.out.println("[ERRO] Carga horária inválida. Deve ser maior que zero.");
+            return;
+        }
+        if (versao == null || versao.trim().isEmpty()) {
+            System.out.println("[ERRO] Versão do PPC inválida. Não pode ser vazia.");
+            return;
+        }
+        this.cargaHoraria = horas;
+        this.versaoPpc = versao;
+        System.out.println("[OK] PPC atualizado com sucesso!");
+        System.out.println("  -> Nova carga horária : " + this.cargaHoraria + " horas");
+        System.out.println("  -> Nova versão do PPC : " + this.versaoPpc);
+    }
+
+    public List<Discente> listarAlunosPorStatus(StatusMatricula status) {
+        List<Discente> resultado = new ArrayList<>();
+
+        if (status == null) {
+            System.out.println("[AVISO] Status informado é nulo. Retornando lista vazia.");
+            return resultado;
+        }
+
+        for (Discente discente : this.discentes) {
+            if (discente.getStatusMatricula() == status) {
+                resultado.add(discente);
+            }
+        }
+        return resultado;
+    }
+
+    public void adicionarDiscente(Discente discente) {
+        if (discente == null) {
+            System.out.println("[AVISO] Discente nulo. Operação ignorada.");
+            return;
+        }
+        this.discentes.add(discente);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public String getVersaoPpc() {
+        return versaoPpc;
+    }
+
+    public void setVersaoPpc(String versaoPpc) {
+        this.versaoPpc = versaoPpc;
+    }
+
+    public List<Discente> getDiscentes() {
+        return discentes;
+    }
+
+    public void setDiscentes(List<Discente> discentes) {
+        this.discentes = discentes;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "nome='" + nome + '\'' +
+                ", codigo=" + codigo +
+                ", cargaHoraria=" + cargaHoraria +
+                ", versaoPpc='" + versaoPpc + '\'' +
+                ", totalDiscentes=" + discentes.size() +
+                '}';
+    }
 }

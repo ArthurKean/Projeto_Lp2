@@ -1,6 +1,9 @@
 package Project_Lp2.model;
 
-import Project_Lp2.model.Enums.StatusOportunidade;
+import Project_Lp2.model.enums.Modalidade;
+import Project_Lp2.model.enums.StatusInscricao;
+import Project_Lp2.model.enums.StatusOportunidade;
+import Project_Lp2.model.enums.TipoOportunidade;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -109,7 +112,7 @@ public class Oportunidade {
     }
 
     public void publicar() {
-        if (status != StatusOportunidade.RASCUNHO && status != statusOportunidade.AGURADANDO_APROVACAO){
+        if (status != StatusOportunidade.RASCUNHO && status != StatusOportunidade.AGUARDANDO_APROVACAO){
             throw new IllegalStateException(
                     "So eh possivel publicar a partir de um RASCUNHO ou AGUARDANDO_APROVACAO" +
                     "Status atual: " + status
@@ -140,7 +143,7 @@ public class Oportunidade {
     public boolean temVagasDisponiveis(){
         long aprovadas = 0;
         for (Inscricao i : inscricoes){
-            if (i.getStatus() == StatusInscricao.APROVADA){
+            if (i.getStatus() == StatusInscricao.APROVADO){
                 aprovadas++;
             }
         }

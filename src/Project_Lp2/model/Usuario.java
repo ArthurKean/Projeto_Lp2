@@ -1,6 +1,6 @@
 package Project_Lp2.model;
 
-import Project_Lp2.model.Enums.Papel;
+import Project_Lp2.model.enums.Papel;
 
 import java.util.ArrayList;
 import java.util.List;
