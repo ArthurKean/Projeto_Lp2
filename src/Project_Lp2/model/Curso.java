@@ -31,9 +31,9 @@ public class Curso {
         }
         this.cargaHoraria = horas;
         this.versaoPpc = versao;
-        System.out.println("PPC atualizado com sucesso!");
-        System.out.println("  - Nova carga horária : " + this.cargaHoraria + " horas");
-        System.out.println("  - Nova versão do PPC : " + this.versaoPpc);
+        System.out.println("PPC atualizado");
+        System.out.println("Nova carga horária : " + this.cargaHoraria + " horas");
+        System.out.println("Nova versao do PPC : " + this.versaoPpc);
     }
 
     public List<Discente> listarAlunosPorStatus(StatusMatricula status) {

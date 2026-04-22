@@ -54,7 +54,9 @@ public class Discente extends Usuario{
     }
     @Override
     public String toString() {
-        return "Discente [matricula=" + matricula + 
+        return "Discente [" +
+               "dados_usuario=" + super.toString() +
+               ", matricula=" + matricula + 
                ", semestre_atual=" + semestreAtual +
                ", curso=" + curso + 
                ", statusMatricula=" + statusMatricula + "]";

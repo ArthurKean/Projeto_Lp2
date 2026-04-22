@@ -16,29 +16,30 @@ public class UsuarioService {
     public void registrarUsuario(Usuario usuario) {
         if (usuario != null) {
             bancoDeUsuarios.add(usuario);
-            System.out.println("Sucesso: Usuário '" + usuario.getNome() + "' cadastrado no sistema");
+            System.out.println("Usuario '" + usuario.getNome() + "' cadastrado no sistema");
         } else {
-            System.out.println("Erro: Tentativa de cadastrar um usuário invalido");
+            System.out.println("Tentativa de cadastrar um usuário invalido");
         }
     }
 
     public List<Usuario> listarUsuarios() {
-        System.out.println("\n==================== LISTA DE USUÁRIOS REGISTRADOS ===================");
+        System.out.println("LISTA DE USUARIOS REGISTRADOS:");
         for (Usuario u : bancoDeUsuarios) {
             System.out.println("Nome: " + u.getNome() + " | Email: " + u.getEmail() + " | Papel: " + u.getPapel());
         }
-        System.out.println("====================================");
         return bancoDeUsuarios;
     }
 
+
+
     public void realizarLogin(String email, String senha) {
         System.out.println("Consultando o banco de dados pelo email '" + email + "'...");
-        System.out.println("Sucesso! Login aprovado");
+        System.out.println("ENTRANDO......");
     }
 
     public void recuperarSenha(String email) {
         System.out.println("recuperando a senha...");
-        System.out.println("--> Um código de recuperação de senha foi mandado para: " + email);
+        System.out.println("Um código de recuperação de senha foi mandado para: " + email);
     }
 
     public void suspenderPerfilDeUsuario(String emailDoUsuario) {

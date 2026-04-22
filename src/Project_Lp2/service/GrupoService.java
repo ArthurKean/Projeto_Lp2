@@ -17,22 +17,21 @@ public class GrupoService {
     public void registrarGrupo(Grupo grupo) {
         if (grupo != null) {
             bancoDeGrupos.add(grupo);
-            System.out.println("Sucesso: O grupo institucional '" + grupo.getNome() + "' foi estabelecido no sistema");
+            System.out.println("O grupo'" + grupo.getNome() + "' foi estabelecido no sistema");
         } else {
-            System.out.println("Erro: Tentativa de registrar grupo invalido");
+            System.out.println("Tentativa de registrar grupo invalido");
         }
     }
 
     public List<Grupo> listarGrupos() {
-        System.out.println("\n=============== LISTA DE GRUPOS ESTUDANTIS ===============");
+        System.out.println("LISTA DE GRUPOS:");
         for (Grupo g : bancoDeGrupos) {
-            System.out.println("Grupo: " + g.getNome() + " | Área: " + g.getTipo() + " | Professor Responsável: " + g.getResponsavel().getNome());
+            System.out.println("Grupo: " + g.getNome() + " | Area: " + g.getTipo() + " | Professor Chefe: " + g.getResponsavel().getNome());
         }
-        System.out.println("==========================================================");
         return bancoDeGrupos;
     }
 
     public void solicitarCriacaoDeNovoGrupo(DiscenteDiretor alunoDiretor, Grupo novoGrupo) {
-        System.out.println("O aluno Diretor '" + alunoDiretor.getNome() + "' submeteu um pedido oficial para criação do grupo '" + novoGrupo.getNome() + "' na UFMA. Aguardando Reitoria.");
+        System.out.println("O aluno Diretor '" + alunoDiretor.getNome() + "' pediu  para criar o grupo '" + novoGrupo.getNome() + "' na UFMA");
     }
 }

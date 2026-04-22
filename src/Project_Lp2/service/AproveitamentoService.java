@@ -18,18 +18,17 @@ public class AproveitamentoService {
     public void registrarAproveitamento(Aproveitamento solicitacao) {
         if (solicitacao != null) {
             bancoDeSolicitacoes.add(solicitacao);
-            System.out.println("Sucesso: A solicitacao de aproveitamento do aluno '" + solicitacao.getDiscente().getNome() + "' foi recebida e esta PENDENTE.");
+            System.out.println("A solicitacao de aproveitamento do aluno '" + solicitacao.getDiscente().getNome() + "' foi recebida e esta PENDENTE.");
         } else {
-            System.out.println("Erro: Requerimento invalido");
+            System.out.println("Requerimento invalido");
         }
     }
 
     public List<Aproveitamento> listarAproveitamentosPendentes() {
-        System.out.println("\n=============== PAINEL DE APROVEITAMENTOS (CHEFE) ===============");
+        System.out.println("PAINEL DE APROVEITAMENTOS (CHEFE)");
         for (Aproveitamento ap : bancoDeSolicitacoes) {
-            System.out.println("-> Aluno: " + ap.getDiscente().getNome() + " | Horas Requeridas: " + ap.getHoras() + "h | Certificado Externo: " + ap.getCertificado_path());
+            System.out.println("Aluno: " + ap.getDiscente().getNome() + " | Horas: " + ap.getHoras() + "h | Certificado: " + ap.getCertificado_path());
         }
-        System.out.println("===========================================================================");
         return bancoDeSolicitacoes;
     }
 
@@ -37,7 +36,7 @@ public class AproveitamentoService {
         if (concederHoras) {
             System.out.println("O Coordenador '" + coordenador.getNome() + "' analisou e APROVOU as horas extracurriculares");
         } else {
-            System.out.println("O Coordenador analisou e INDEFERIU o pedido | Motivo: O curso não tem aderência a grade de CC");
+            System.out.println("O Coordenador analisou e INDEFERIU o pedido | Motivo: O curso não tem aderencia a grade de CC");
         }
     }
 }

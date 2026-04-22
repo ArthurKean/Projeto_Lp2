@@ -5,8 +5,6 @@ import Project_Lp2.model.enums.TipoOportunidade;
 import Project_Lp2.model.enums.Modalidade;
 import java.time.LocalDate;
 
-import java.util.Date;
-
 public class DiscenteDiretor extends Discente {
 
     private Grupo grupo;

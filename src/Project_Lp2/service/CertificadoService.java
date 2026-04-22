@@ -18,26 +18,25 @@ public class CertificadoService {
     public void guardarRegistroDeCertificadoOficial(Certificado certificado) {
         if (certificado != null) {
             cartorioInstitucional.add(certificado);
-            System.out.println("Sucesso: Certificado arquivado digitalmente no histórico institucional da Universidade.");
+            System.out.println("Certificado arquivado");
         }
     }
 
     public List<Certificado> listarMeusCertificados(Discente alunoLogado) {
-        System.out.println("\n=============== MEUS CERTIFICADOS (ALUNO: " + alunoLogado.getNome() + ") ===============");
+        System.out.println("MEUS CERTIFICADOS (ALUNO: " + alunoLogado.getNome() + ")");
         for (Certificado c : cartorioInstitucional) {
             if (c.getDiscente() != null && c.getDiscente().equals(alunoLogado)) {
-                System.out.println("Documento: " + c.getOportunidade().getTitulo() + " | Validação: " + c.getUuidHash());
+                System.out.println("Documento: " + c.getOportunidade().getTitulo() + " | Validaçao: " + c.getUuidHash());
             }
         }
-        System.out.println("=========================================================================");
         return cartorioInstitucional;
     }
 
     public void solicitarGeracaoDeLote(Oportunidade oportunidadeConcluida) {
-        System.out.println("O organizador do evento '" + oportunidadeConcluida.getTitulo() + "' enviou a lista de presentes para o DAA emitir as assinaturas");
+        System.out.println("O organizador do evento '" + oportunidadeConcluida.getTitulo() + "' enviou a lista");
     }
 
     public void consultarAutenticidadeNaUFMA(String codigoDeHash) {
-        System.out.println("O Visitante disparou uma verificação online... RESULTADO: O hash " + codigoDeHash + " eh verdadeiro e assinado pela UFMA!");
+        System.out.println("O Visitante quis fazer a verificao ... RESULTADO: O hash " + codigoDeHash + " eh verdadeiro");
     }
 }

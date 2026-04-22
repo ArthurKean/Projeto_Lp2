@@ -15,21 +15,21 @@ public class InscricaoService {
     }
 
     public List<Inscricao> listarInscricoesRecebidas(Oportunidade oportunidade) {
-        System.out.println("\n=========== CAIXA DE ENTRADA: Solicitações Pendentes =================");
+        System.out.println("CAIXA DE ENTRADA: Pendencias");
         System.out.println("Oportunidade: " + oportunidade.getTitulo());
         
         for (Inscricao inscricao : bancoDeInscricoes) {
-            System.out.println("-> Aluno Interessado: " + inscricao.getDiscente().getNome() + " | Status Atual: " + inscricao.getStatus());
+            System.out.println("Aluno Interessado: " + inscricao.getDiscente().getNome() + " | Status Atual: " + inscricao.getStatus());
         }
-        System.out.println("===============================");
         return bancoDeInscricoes;
     }
 
-    public void processarAceitacaoInscricao(Inscricao inscricao, boolean concederAval) {
-        if (concederAval) {
-            System.out.println("O Coordenador analisou e DEFERIU/APROVOU a participação do aluno no evento!");
+
+    public void processarAceitacaoInscricao(Inscricao inscricao, boolean conceder) {
+        if (conceder) {
+            System.out.println("O Coordenador analisou APROVOU a participaçao do aluno no evento!");
         } else {
-            System.out.println("A participação foi REJEITADA");
+            System.out.println("A participaçao foi REJEITADA");
         }
     }
 }

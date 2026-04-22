@@ -8,12 +8,11 @@ public class CursoService {
     }
 
     public void iniciarRevisaoDePPC(Curso cursoAlvo, int novasHoras, String novaVersao) {
-        System.out.println("\n=============== REVISÃO INSTITUCIONAL: PPC ===============");
-        System.out.println("O coordenador selecionou o curso de '" + cursoAlvo.getNome() + "' para atualizacao de currículo");
+        System.out.println("REVISAO INSTITUCIONAL: PPC");
+        System.out.println("O coordenador selecionou o curso de '" + cursoAlvo.getNome() + "' para atualizacao de grade comum curricular");
 
         cursoAlvo.atualizarPPC(novasHoras, novaVersao);
         
-        System.out.println("Aviso formal emitido ao colegiado.");
-        System.out.println("==========================================================");
+        System.out.println("Tudo certo!");
     }
 }
