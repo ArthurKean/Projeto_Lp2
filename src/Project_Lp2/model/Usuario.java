@@ -56,7 +56,7 @@ public class Usuario {
 
     public void mudarSenha(String novaSenha) {
         if (novaSenha == null || novaSenha.length() < 8){
-            System.out.println("Deu errado: A senha precisa ter pelo menos 8 caracteres!");
+            System.out.println("Deu errado, a senha precisa ter pelo menos 8 caracteres!");
             return;
         }
         this.senha = novaSenha;

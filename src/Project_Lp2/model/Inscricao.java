@@ -18,12 +18,12 @@ public class Inscricao {
 
     public void aprovar(String data) {
         this.status = StatusInscricao.APROVADO;
-        System.out.println("Inscrição aprovada em: " + data);
+        System.out.println("Inscriçao aprovada em: " + data);
     }
 
     public void rejeitar() {
         this.status = StatusInscricao.REJEITADO;
-        System.out.println("Inscrição rejeitada.");
+        System.out.println("Inscriçao rejeitada");
     }
 
     public Oportunidade getOportunidade() {

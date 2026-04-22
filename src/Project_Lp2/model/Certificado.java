@@ -41,11 +41,11 @@ public class Certificado {
                 + "|EMISSAAO:" + dataEmissao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + "|STATUS:" + statusAssinatura.name();
 
-        System.out.println("=========================================");
+        System.out.println("=============================================");
         System.out.println("          QR CODE - CERTIFICADO          ");
         System.out.println("=========================================");
         System.out.println(conteudoQR);
-        System.out.println("=========================================");
+  
 
         return conteudoQR;
     }

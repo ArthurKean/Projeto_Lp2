@@ -113,7 +113,7 @@ public class Oportunidade {
 
     public void publicar() {
         if (status != StatusOportunidade.RASCUNHO && status != StatusOportunidade.AGUARDANDO_APROVACAO){
-            System.out.println("ERRO! Só pode publicar se for Rascunho ou Aguardando Aprovaçao");
+            System.out.println("Só pode publicar se for Rascunho ou Aguardando Aprovaçao");
             return;
         }
         this.status = StatusOportunidade.PUBLICADA;
@@ -121,7 +121,7 @@ public class Oportunidade {
 
     public void fecharInscricoes(){
         if (status != StatusOportunidade.ABERTA){
-            System.out.println("EERO! Só dá pra fechar a inscrição se o status for aberta");
+            System.out.println("Só dá pra fechar a inscrição se o status for aberta");
             return;
         }
         this.status = StatusOportunidade.EM_EXECUCAO;

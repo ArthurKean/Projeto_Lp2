@@ -1,13 +1,6 @@
 import Project_Lp2.model.*;
 import Project_Lp2.model.enums.*;
-import Project_Lp2.service.AproveitamentoService;
-import Project_Lp2.service.CertificadoService;
-import Project_Lp2.service.CursoService;
-import Project_Lp2.service.GrupoService;
-import Project_Lp2.service.InscricaoService;
-import Project_Lp2.service.OportunidadeService;
-import Project_Lp2.service.UsuarioService;
-
+import Project_Lp2.service.*;
 import java.time.LocalDate;
 
 public class Main {
