@@ -9,7 +9,7 @@ public class CursoService {
 
     public void iniciarRevisaoDePPC(Curso cursoAlvo, int novasHoras, String novaVersao) {
         System.out.println("\n=============== REVISÃO INSTITUCIONAL: PPC ===============");
-        System.out.println("O coordenador selecionou o curso de '" + cursoAlvo.getNome() + "' para modernização de currículo.");
+        System.out.println("O coordenador selecionou o curso de '" + cursoAlvo.getNome() + "' para atualizacao de currículo");
 
         cursoAlvo.atualizarPPC(novasHoras, novaVersao);
         

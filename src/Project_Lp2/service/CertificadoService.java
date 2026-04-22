@@ -34,10 +34,10 @@ public class CertificadoService {
     }
 
     public void solicitarGeracaoDeLote(Oportunidade oportunidadeConcluida) {
-        System.out.println("Simulando: O organizador do evento '" + oportunidadeConcluida.getTitulo() + "' enviou a lista de presentes para o DAA emitir as assinaturas.");
+        System.out.println("O organizador do evento '" + oportunidadeConcluida.getTitulo() + "' enviou a lista de presentes para o DAA emitir as assinaturas");
     }
 
     public void consultarAutenticidadeNaUFMA(String codigoDeHash) {
-        System.out.println("Simulando: O Visitante disparou uma verificação online... RESULTADO: O hash " + codigoDeHash + " é verdadeiro e assinado pela Universidade!");
+        System.out.println("O Visitante disparou uma verificação online... RESULTADO: O hash " + codigoDeHash + " eh verdadeiro e assinado pela UFMA!");
     }
 }

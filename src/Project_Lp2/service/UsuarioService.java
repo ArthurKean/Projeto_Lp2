@@ -16,9 +16,9 @@ public class UsuarioService {
     public void registrarUsuario(Usuario usuario) {
         if (usuario != null) {
             bancoDeUsuarios.add(usuario);
-            System.out.println("Sucesso: Usuário '" + usuario.getNome() + "' cadastrado no sistema.");
+            System.out.println("Sucesso: Usuário '" + usuario.getNome() + "' cadastrado no sistema");
         } else {
-            System.out.println("Erro: Tentativa de cadastrar um usuário vazio.");
+            System.out.println("Erro: Tentativa de cadastrar um usuário invalido");
         }
     }
 

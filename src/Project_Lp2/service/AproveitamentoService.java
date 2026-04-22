@@ -18,14 +18,14 @@ public class AproveitamentoService {
     public void registrarAproveitamento(Aproveitamento solicitacao) {
         if (solicitacao != null) {
             bancoDeSolicitacoes.add(solicitacao);
-            System.out.println("Sucesso: A solicitação de aproveitamento do aluno '" + solicitacao.getDiscente().getNome() + "' foi recebida protocolada e está PENDENTE.");
+            System.out.println("Sucesso: A solicitacao de aproveitamento do aluno '" + solicitacao.getDiscente().getNome() + "' foi recebida e esta PENDENTE.");
         } else {
-            System.out.println("Erro: Requerimento de aproveitamento nulo.");
+            System.out.println("Erro: Requerimento invalido");
         }
     }
 
     public List<Aproveitamento> listarAproveitamentosPendentes() {
-        System.out.println("\n=============== PAINEL DE APROVEITAMENTOS (COORDENADOR UCE) ===============");
+        System.out.println("\n=============== PAINEL DE APROVEITAMENTOS (CHEFE) ===============");
         for (Aproveitamento ap : bancoDeSolicitacoes) {
             System.out.println("-> Aluno: " + ap.getDiscente().getNome() + " | Horas Requeridas: " + ap.getHoras() + "h | Certificado Externo: " + ap.getCertificado_path());
         }
@@ -35,9 +35,9 @@ public class AproveitamentoService {
 
     public void avaliarSolicitacaoDeAproveitamento(Aproveitamento solicitacao, Docente coordenador, boolean concederHoras) {
         if (concederHoras) {
-            System.out.println("Simulando: O Coordenador '" + coordenador.getNome() + "' analisou o PDF anexado e APROVOU as horas extracurriculares.");
+            System.out.println("O Coordenador '" + coordenador.getNome() + "' analisou e APROVOU as horas extracurriculares");
         } else {
-            System.out.println("Simulando: O Coordenador analisou e INDEFERIU o pedido. Motivo: O curso não tem aderência a grade de CC.");
+            System.out.println("O Coordenador analisou e INDEFERIU o pedido | Motivo: O curso não tem aderência a grade de CC");
         }
     }
 }

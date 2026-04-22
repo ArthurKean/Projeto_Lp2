@@ -14,7 +14,6 @@ public class GrupoService {
         this.bancoDeGrupos = new ArrayList<>();
     }
 
-    // Mapeado do balão: "Gerenciar grupos" (Docente)
     public void registrarGrupo(Grupo grupo) {
         if (grupo != null) {
             bancoDeGrupos.add(grupo);
@@ -24,7 +23,6 @@ public class GrupoService {
         }
     }
 
-    // Mapeado do balão: "Gerenciar grupos" (Listagem)
     public List<Grupo> listarGrupos() {
         System.out.println("\n=============== LISTA DE GRUPOS ESTUDANTIS ===============");
         for (Grupo g : bancoDeGrupos) {
@@ -34,7 +32,6 @@ public class GrupoService {
         return bancoDeGrupos;
     }
 
-    // Mapeado do balão: "Solicitar aprovação de novo grupo estudantil" (Discente Diretor)
     public void solicitarCriacaoDeNovoGrupo(DiscenteDiretor alunoDiretor, Grupo novoGrupo) {
         System.out.println("O aluno Diretor '" + alunoDiretor.getNome() + "' submeteu um pedido oficial para criação do grupo '" + novoGrupo.getNome() + "' na UFMA. Aguardando Reitoria.");
     }
