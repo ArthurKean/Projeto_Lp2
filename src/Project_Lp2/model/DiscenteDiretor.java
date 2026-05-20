@@ -59,4 +59,13 @@ public class DiscenteDiretor extends Discente {
     public void setData_fim(LocalDate data_fim) {
         this.dataFim = data_fim;
     }
+
+    @Override
+    public void exibirPerfil() {
+        String nomeGrupo = "N/A";
+        if (grupo != null) {
+            nomeGrupo = grupo.getNome();
+        }
+        System.out.println("Perfil de Discente Diretor: " + getNome() + " | Matrícula: " + getMatricula() + " | Cargo: " + cargo + " do Grupo " + nomeGrupo);
+    }
 }

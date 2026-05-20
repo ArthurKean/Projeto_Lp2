@@ -61,4 +61,13 @@ public class Discente extends Usuario{
                ", curso=" + curso + 
                ", statusMatricula=" + statusMatricula + "]";
     }
+
+    @Override
+    public void exibirPerfil() {
+        String nomeCurso = "Sem Curso";
+        if (curso != null) {
+            nomeCurso = curso.getNome();
+        }
+        System.out.println("Perfil de Discente: " + getNome() + " | Matrícula: " + matricula + " | Curso: " + nomeCurso);
+    }
 }
