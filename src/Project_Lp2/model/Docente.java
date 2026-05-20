@@ -54,9 +54,4 @@ public class Docente extends Usuario {
                 ", departamento='" + departamento + '\'' +
                 '}';
     }
-
-    @Override
-    public void exibirPerfil() {
-        System.out.println("Perfil de Docente: " + getNome() + " | SIAPE: " + siape + " | Departamento: " + departamento);
-    }
 }
