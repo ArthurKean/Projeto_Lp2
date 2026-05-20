@@ -4,7 +4,7 @@ import Project_Lp2.model.enums.Papel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public abstract class Usuario {
     private String nome;
     private String email;
     private String senha;
@@ -54,6 +54,8 @@ public class Usuario {
         return senha;
     }
 
+
+
     public void mudarSenha(String novaSenha) {
         if (novaSenha == null || novaSenha.length() < 8){
             System.out.println("Deu errado: A senha precisa ter pelo menos 8 caracteres!");
@@ -71,6 +73,8 @@ public class Usuario {
         }
         return resultado;
     }
+
+    public abstract void exibirPerfil();
 
     @Override
     public String toString() {
