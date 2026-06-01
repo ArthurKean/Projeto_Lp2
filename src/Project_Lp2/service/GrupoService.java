@@ -23,7 +23,7 @@ public class GrupoService {
             bancoDeGrupos.add(grupo);
             System.out.println("O grupo '" + grupo.getNome() + "' foi registrado no sistema.");
         } else {
-            System.out.println("Erro: Tentativa de registrar grupo inválido.");
+            System.out.println("Tentativa de registrar grupo inválido.");
         }
     }
 
@@ -38,13 +38,13 @@ public class GrupoService {
         if (grupo != null && membro != null) {
             grupo.adicionarMembro(membro);
         } else {
-            System.out.println("Erro: Grupo ou Usuário inválido para adição.");
+            System.out.println("Grupo ou Usuário inválido para adição.");
         }
     }
 
     public void atribuirCargo(Grupo grupo, Usuario discente, Cargos cargo, Docente solicitante) {
         if (grupo == null || discente == null || solicitante == null) {
-            System.out.println("Erro: Dados inválidos para alteração de cargo.");
+            System.out.println("Dados inválidos para alteração de cargo.");
             return;
         }
         

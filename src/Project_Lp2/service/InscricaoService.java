@@ -29,10 +29,10 @@ public class InscricaoService {
 
     public void cancelarInscricao(Inscricao inscricao) {
         if (inscricao != null) {
-            inscricao.cancelar(); // Usando o método que adicionamos na classe Inscricao
+            inscricao.cancelar();
             System.out.println("A inscrição do aluno '" + inscricao.getDiscente().getNome() + "' foi cancelada.");
         } else {
-            System.out.println("Erro: Inscrição não encontrada para cancelamento.");
+            System.out.println("Inscrição não encontrada para cancelamento.");
         }
     }
 
@@ -40,7 +40,7 @@ public class InscricaoService {
         if (inscricao != null) {
             String dataAprovacao = LocalDate.now().toString();
             inscricao.aprovar(dataAprovacao);
-            System.out.println("O coordenador/docente APROVOU a inscrição de '" + inscricao.getDiscente().getNome() + "'.");
+            System.out.println("O coordenadorAPROVOU a inscrição de '" + inscricao.getDiscente().getNome() + "'.");
         }
     }
 
@@ -54,8 +54,8 @@ public class InscricaoService {
     public void substituirParticipante(Inscricao inscricao, Discente novoDiscente) {
         if (inscricao != null && novoDiscente != null) {
             System.out.println("Substituindo o participante '" + inscricao.getDiscente().getNome() + "' por '" + novoDiscente.getNome() + "'.");
-            inscricao.setDiscente(novoDiscente); // Método que criamos no modelo
-            inscricao.setStatus(StatusInscricao.PENDENTE); // Ao trocar, volta para análise
+            inscricao.setDiscente(novoDiscente);
+            inscricao.setStatus(StatusInscricao.PENDENTE);
         }
     }
 

@@ -74,7 +74,7 @@ public class OportunidadeService {
     public void encerrarOportunidade(Oportunidade oportunidade) {
         if (oportunidade != null) {
             oportunidade.encerrar(); // Chamando a lógica da própria classe Oportunidade
-            System.out.println("A oportunidade '" + oportunidade.getTitulo() + "' foi ENCERRADA com sucesso.");
+            System.out.println("A oportunidade '" + oportunidade.getTitulo() + "' foi ENCERRADA com sucesso");
         }
     }
 
@@ -88,7 +88,7 @@ public class OportunidadeService {
                 System.out.println("A oportunidade '" + oportunidade.getTitulo() + "' não possui vagas disponíveis");
             }
         } else {
-            System.out.println("A oportunidade precisa estar PUBLICADA ou ABERTA.");
+            System.out.println("A oportunidade precisa estar PUBLICADA ou ABERTA");
         }
     }
 
@@ -104,7 +104,7 @@ public class OportunidadeService {
             inscricaoRemover.setStatus(StatusInscricao.CANCELADO);
             System.out.println("O estudante '" + discente.getNome() + "' abandonou a oportunidade '" + oportunidade.getTitulo() + "'. O status da inscrição mudou para CANCELADO.");
         } else {
-            System.out.println("Aviso: O estudante '" + discente.getNome() + "' não estava inscrito nesta oportunidade.");
+            System.out.println("O estudante '" + discente.getNome() + "' não estava inscrito nesta oportunidade.");
         }
     }
 }

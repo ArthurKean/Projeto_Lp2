@@ -38,7 +38,7 @@ public class CertificadoService {
     }
 
     public List<Certificado> solicitarGeracaoDeLote(Oportunidade oportunidadeConcluida, int cargaHoraria, String caminhoBase) {
-        System.out.println("\nGERANDO CERTIFICADOS EM LOTE: Evento '" + oportunidadeConcluida.getTitulo() + "'...");
+        System.out.println("\nGERANDO CERTIFICADOS: Evento '" + oportunidadeConcluida.getTitulo() + "'...");
         List<Certificado> lote = new ArrayList<>();
 
         for (Inscricao inscricao : oportunidadeConcluida.getInscricoes()) {
@@ -53,20 +53,20 @@ public class CertificadoService {
                 System.out.println("- Certificado emitido para: " + inscricao.getDiscente().getNome() + " | Hash: " + cert.getUuidHash());
             }
         }
-        System.out.println("Total de certificados emitidos no lote: " + lote.size());
+        System.out.println("Total de certificados emitidos: " + lote.size());
         return lote;
     }
 
     public boolean consultarAutenticidadeNaUFMA(String codigoDeHash) {
-        System.out.println("\nSISTEMA DE VALIDAÇÃO UFMA - Consultando Hash: " + codigoDeHash);
+        System.out.println("\nSISTEMA DE VALIDAÇÃO UFMA - Consultando: " + codigoDeHash);
         for (Certificado c : cartorioInstitucional) {
             if (c.getUuidHash().equals(codigoDeHash)) {
-                System.out.println("RESULTADO: Certificado VÁLIDO. Pertence ao aluno: " + c.getDiscente().getNome());
-                c.gerarQRCode(); // Aproveita para exibir o QRCode de verificação
+                System.out.println("Certificado VÁLIDO. Pertence ao aluno: " + c.getDiscente().getNome());
+                c.gerarQRCode();
                 return true;
             }
         }
-        System.out.println("RESULTADO: Certificado FALSO ou não encontrado no sistema.");
+        System.out.println("Certificado FALSO ou não encontrado no sistema.");
         return false;
     }
 }
