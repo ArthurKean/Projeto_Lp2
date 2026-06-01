@@ -2,7 +2,10 @@ package Project_Lp2.service;
 
 import Project_Lp2.model.Inscricao;
 import Project_Lp2.model.Oportunidade;
+import Project_Lp2.model.Discente;
+import Project_Lp2.model.enums.StatusInscricao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,22 +17,58 @@ public class InscricaoService {
         this.bancoDeInscricoes = new ArrayList<>();
     }
 
-    public List<Inscricao> listarInscricoesRecebidas(Oportunidade oportunidade) {
-        System.out.println("CAIXA DE ENTRADA: Pendencias");
-        System.out.println("Oportunidade: " + oportunidade.getTitulo());
+    public Inscricao inscrever(Oportunidade oportunidade, Discente discente, String motivacao) {
+        Inscricao novaInscricao = new Inscricao(oportunidade, discente, motivacao);
+        bancoDeInscricoes.add(novaInscricao);
+
+        oportunidade.getInscricoes().add(novaInscricao);
         
-        for (Inscricao inscricao : bancoDeInscricoes) {
-            System.out.println("Aluno Interessado: " + inscricao.getDiscente().getNome() + " | Status Atual: " + inscricao.getStatus());
-        }
-        return bancoDeInscricoes;
+        System.out.println("Inscrição de '" + discente.getNome() + "' realizada com sucesso! Motivacao: " + motivacao);
+        return novaInscricao;
     }
 
-
-    public void processarAceitacaoInscricao(Inscricao inscricao, boolean conceder) {
-        if (conceder) {
-            System.out.println("O Coordenador analisou APROVOU a participaçao do aluno no evento!");
+    public void cancelarInscricao(Inscricao inscricao) {
+        if (inscricao != null) {
+            inscricao.cancelar(); // Usando o método que adicionamos na classe Inscricao
+            System.out.println("A inscrição do aluno '" + inscricao.getDiscente().getNome() + "' foi cancelada.");
         } else {
-            System.out.println("A participaçao foi REJEITADA");
+            System.out.println("Erro: Inscrição não encontrada para cancelamento.");
         }
+    }
+
+    public void aprovarInscricao(Inscricao inscricao) {
+        if (inscricao != null) {
+            String dataAprovacao = LocalDate.now().toString();
+            inscricao.aprovar(dataAprovacao);
+            System.out.println("O coordenador/docente APROVOU a inscrição de '" + inscricao.getDiscente().getNome() + "'.");
+        }
+    }
+
+    public void rejeitarInscricao(Inscricao inscricao) {
+        if (inscricao != null) {
+            inscricao.rejeitar();
+            System.out.println("A inscrição de '" + inscricao.getDiscente().getNome() + "' foi REJEITADA.");
+        }
+    }
+
+    public void substituirParticipante(Inscricao inscricao, Discente novoDiscente) {
+        if (inscricao != null && novoDiscente != null) {
+            System.out.println("Substituindo o participante '" + inscricao.getDiscente().getNome() + "' por '" + novoDiscente.getNome() + "'.");
+            inscricao.setDiscente(novoDiscente); // Método que criamos no modelo
+            inscricao.setStatus(StatusInscricao.PENDENTE); // Ao trocar, volta para análise
+        }
+    }
+
+    public List<Inscricao> listarInscritos(Oportunidade oportunidade) {
+        System.out.println("LISTA DE INSCRITOS NA OPORTUNIDADE: " + oportunidade.getTitulo());
+        List<Inscricao> filtradas = new ArrayList<>();
+        
+        for (Inscricao inscricao : bancoDeInscricoes) {
+            if (inscricao.getOportunidade().equals(oportunidade)) {
+                filtradas.add(inscricao);
+                System.out.println("- Aluno: " + inscricao.getDiscente().getNome() + " | Status: " + inscricao.getStatus() + " | Motivação: " + inscricao.getMotivacao());
+            }
+        }
+        return filtradas;
     }
 }

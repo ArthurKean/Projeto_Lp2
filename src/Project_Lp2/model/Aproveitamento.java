@@ -1,6 +1,7 @@
 package Project_Lp2.model;
 
 import Project_Lp2.model.enums.StatusAproveitamento;
+import java.time.LocalDate;
 
 public class Aproveitamento {
 
@@ -12,6 +13,7 @@ public class Aproveitamento {
     private String certificadoPath;
     private Usuario avaliador;
     private String motivoRejeicao;
+    private LocalDate dataSolicitacao;
 
     public Aproveitamento(Discente discente, String descricao,
                           String instituicao, int horas) {
@@ -20,6 +22,7 @@ public class Aproveitamento {
         this.instituicao = instituicao;
         this.horas = horas;
         this.status = StatusAproveitamento.PENDENTE; 
+        this.dataSolicitacao = LocalDate.now();
     }
 
     public boolean uploadCertificado(String file) {
@@ -85,5 +88,12 @@ public class Aproveitamento {
     }
     public void setMotivo_rejeicao(String motivo_rejeicao) {
         this.motivoRejeicao = motivo_rejeicao;
+    }
+
+    public LocalDate getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+    public void setDataSolicitacao(LocalDate dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
     }
 }

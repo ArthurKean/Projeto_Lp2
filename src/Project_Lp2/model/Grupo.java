@@ -1,8 +1,10 @@
 package Project_Lp2.model;
 
+import Project_Lp2.model.enums.Cargos;
 import Project_Lp2.model.enums.StatusGrupo;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Grupo {
 
@@ -12,85 +14,94 @@ public class Grupo {
     private String descricao;
     private StatusGrupo status;
     private Docente responsavel;
-    private List<Usuario> membros;
+    private LocalDate dataCriacao;
+    
+    private Map<Usuario, Cargos> membros;
 
     public Grupo(String nome, String tipo,
                  String email, String descricao,
-                 Docente responsavel){
+                 Docente responsavel) {
         this.nome = nome;
         this.tipo = tipo;
         this.email = email;
         this.descricao = descricao;
         this.status = StatusGrupo.ATIVO;
         this.responsavel = responsavel;
-        this.membros = new ArrayList<>();
+        this.membros = new HashMap<>();
+        this.dataCriacao = LocalDate.now();
     }
 
     public void adicionarMembro(Usuario membro) {
-        if (membro != null && !this.membros.contains(membro)) {
-            this.membros.add(membro);
-            System.out.println("Membro " + membro.getNome() + " foi adicionado com sucesso ao grupo " + nome);
+        if (membro != null && !this.membros.containsKey(membro)) {
+            this.membros.put(membro, Cargos.MEMBRO); // Cargo padrão ao entrar
+            System.out.println("Membro " + membro.getNome() + " foi adicionado com sucesso ao grupo " + nome + " como MEMBRO.");
         } else {
-            System.out.println("Ops! Esse aluno nao pode ser adicionado");
+            System.out.println("Aviso: Esse aluno não pode ser adicionado ou já faz parte do grupo.");
         }
     }
 
-    public List<Usuario> getMembros() {
-        return membros;
+    public void removerMembro(Usuario membro) {
+        if (membros.containsKey(membro)) {
+            membros.remove(membro);
+            System.out.println("Membro " + membro.getNome() + " removido do grupo " + nome);
+        } else {
+            System.out.println("Erro: Membro não encontrado no grupo.");
+        }
+    }
+    
+    public void atribuirCargo(Usuario membro, Cargos novoCargo) {
+        if (membros.containsKey(membro)) {
+            membros.put(membro, novoCargo);
+            System.out.println("O cargo de " + membro.getNome() + " foi alterado para " + novoCargo);
+        } else {
+            System.out.println("Erro: O usuário não faz parte deste grupo.");
+        }
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void listarMembros() {
+        System.out.println("\nLista de Membros do grupo " + nome + " (" + membros.size() + "):");
+        for (Map.Entry<Usuario, Cargos> entry : membros.entrySet()) {
+            Usuario m = entry.getKey();
+            Cargos c = entry.getValue();
+            System.out.println("- " + m.getNome() + " | Cargo: " + c + " | Email: " + m.getEmail());
+        }
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
+    public void alterarStatus(StatusGrupo novoStatus) {
+        this.status = novoStatus;
+        System.out.println("O status do grupo '" + nome + "' foi alterado para: " + novoStatus);
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public StatusGrupo getStatus() {
-        return status;
-    }
-    public void setStatus(StatusGrupo status) {
-        this.status = status;
-    }
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
-    public Docente getResponsavel() {
-        return responsavel;
-    }
-    public void setResponsavel(Docente responsavel) {
-        this.responsavel = responsavel;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public StatusGrupo getStatus() { return status; }
+    public void setStatus(StatusGrupo status) { this.status = status; }
+
+    public Docente getResponsavel() { return responsavel; }
+    public void setResponsavel(Docente responsavel) { this.responsavel = responsavel; }
+
+    public Map<Usuario, Cargos> getMembros() { return membros; }
+    public LocalDate getDataCriacao() { return dataCriacao; }
 
     @Override
     public String toString() {
         return "Grupo{" +
                 "nome='" + nome + '\'' +
                 ", tipo='" + tipo + '\'' +
-                ", email='" + email + '\'' +
-                ", descricao='" + descricao + '\'' +
                 ", status=" + status +
-                ", responsavel=" + responsavel +
-                ", membros=" + membros.size() +
+                ", responsavel=" + (responsavel != null ? responsavel.getNome() : "null") +
+                ", membros_qtd=" + membros.size() +
+                ", dataCriacao=" + dataCriacao +
                 '}';
     }
 }

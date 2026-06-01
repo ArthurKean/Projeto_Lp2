@@ -45,4 +45,17 @@ public class Inscricao {
     public void setMotivacao(String motivacao) {
         this.motivacao = motivacao;
     }
+
+    public void setStatus(StatusInscricao status) {
+        this.status = status;
+    }
+
+    public void cancelar() {
+        this.status = StatusInscricao.CANCELADO;
+        System.out.println("Inscrição cancelada.");
+    }
+
+    public void setDiscente(Discente discente) {
+        this.discente = discente;
+    }
 }
