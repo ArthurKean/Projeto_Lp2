@@ -5,7 +5,6 @@ import Project_Lp2.model.enums.*;
 import Project_Lp2.service.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
