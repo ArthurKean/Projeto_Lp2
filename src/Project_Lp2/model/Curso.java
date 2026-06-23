@@ -12,6 +12,7 @@ public class Curso {
     private int cargaHoraria;
     private String versaoPpc;
     private List<Discente> discentes;
+    private List<String> historicoPpc;
 
     public Curso(String nome,
                  int codigo,
@@ -22,6 +23,7 @@ public class Curso {
         this.cargaHoraria = cargaHoraria;
         this.versaoPpc = versaoPpc;
         this.discentes = new ArrayList<>();
+        this.historicoPpc = new ArrayList<>();
     }
 
     public void atualizarPPC(int horas, String versao) {
@@ -29,11 +31,23 @@ public class Curso {
             System.out.println("Carga horária inválida");
             return;
         }
+        this.historicoPpc.add("Versão: " + this.versaoPpc + " (CH: " + this.cargaHoraria + "h) -> Nova Versão: " + versao + " (CH: " + horas + "h)");
         this.cargaHoraria = horas;
         this.versaoPpc = versao;
         System.out.println("PPC atualizado");
         System.out.println("Nova carga horária : " + this.cargaHoraria + " horas");
         System.out.println("Nova versao do PPC : " + this.versaoPpc);
+    }
+
+    public void exibirHistoricoPPC() {
+        System.out.println("\nHistórico do PPC do curso " + nome + ":");
+        if (historicoPpc.isEmpty()) {
+            System.out.println("Nenhum histórico registrado.");
+        } else {
+            for (String registro : historicoPpc) {
+                System.out.println("- " + registro);
+            }
+        }
     }
 
     public List<Discente> listarAlunosPorStatus(StatusMatricula status) {

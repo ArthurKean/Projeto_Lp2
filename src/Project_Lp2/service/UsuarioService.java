@@ -1,7 +1,9 @@
 package Project_Lp2.service;
 
+import Project_Lp2.model.Inscricao;
 import Project_Lp2.model.Usuario;
 import Project_Lp2.model.Discente;
+import Project_Lp2.model.enums.StatusInscricao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +77,29 @@ public class UsuarioService {
         } else {
             System.out.println("Usuário não encontrado para desativação!");
         }
+    }
+
+    public void substituirParticipante(Inscricao atual, Inscricao nova, String justificativa) {
+        if (atual == null || nova == null) {
+            System.out.println("Erro: inscrições inválidas.");
+            return;
+        }
+        if (!atual.getOportunidade().equals(nova.getOportunidade())) {
+            System.out.println("Erro: inscrições de oportunidades diferentes.");
+            return;
+        }
+        if (atual.getStatus() != StatusInscricao.APROVADO) {
+            System.out.println("Erro: participante atual não está aprovado.");
+            return;
+        }
+
+        atual.setStatus(StatusInscricao.CANCELADO);
+        nova.setStatus(StatusInscricao.APROVADO);
+
+        System.out.println("Substituição realizada com sucesso!");
+        System.out.println("Removido: " + atual.getDiscente().getNome());
+        System.out.println("Adicionado: " + nova.getDiscente().getNome());
+        System.out.println("Justificativa: " + justificativa);
     }
 
     public List<Discente> listarDiscentes() {

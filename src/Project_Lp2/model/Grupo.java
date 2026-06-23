@@ -5,6 +5,8 @@ import Project_Lp2.model.enums.StatusGrupo;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Grupo {
 
@@ -17,6 +19,7 @@ public class Grupo {
     private LocalDate dataCriacao;
     
     private Map<Usuario, Cargos> membros;
+    private List<String> historicoUsuarios;
 
     public Grupo(String nome, String tipo,
                  String email, String descricao,
@@ -28,12 +31,14 @@ public class Grupo {
         this.status = StatusGrupo.ATIVO;
         this.responsavel = responsavel;
         this.membros = new HashMap<>();
+        this.historicoUsuarios = new ArrayList<>();
         this.dataCriacao = LocalDate.now();
     }
 
     public void adicionarMembro(Usuario membro) {
         if (membro != null && !this.membros.containsKey(membro)) {
             this.membros.put(membro, Cargos.MEMBRO); // Cargo padrão ao entrar
+            this.historicoUsuarios.add("Membro " + membro.getNome() + " ingressou em " + LocalDate.now());
             System.out.println("Membro " + membro.getNome() + " foi adicionado com sucesso ao grupo " + nome + " como MEMBRO.");
         } else {
             System.out.println("Aviso: Esse aluno não pode ser adicionado ou já faz parte do grupo.");
@@ -43,6 +48,7 @@ public class Grupo {
     public void removerMembro(Usuario membro) {
         if (membros.containsKey(membro)) {
             membros.remove(membro);
+            this.historicoUsuarios.add("Membro " + membro.getNome() + " saiu em " + LocalDate.now());
             System.out.println("Membro " + membro.getNome() + " removido do grupo " + nome);
         } else {
             System.out.println("Erro: Membro não encontrado no grupo.");
@@ -65,6 +71,21 @@ public class Grupo {
             Cargos c = entry.getValue();
             System.out.println("- " + m.getNome() + " | Cargo: " + c + " | Email: " + m.getEmail());
         }
+    }
+
+    public void exibirHistoricoUsuarios() {
+        System.out.println("\nHistórico de Usuários do grupo " + nome + ":");
+        if (historicoUsuarios.isEmpty()) {
+            System.out.println("Nenhum histórico registrado.");
+        } else {
+            for (String registro : historicoUsuarios) {
+                System.out.println("- " + registro);
+            }
+        }
+    }
+
+    public List<Usuario> getUsuariosRegistrados() {
+        return new ArrayList<>(membros.keySet());
     }
 
     public void alterarStatus(StatusGrupo novoStatus) {

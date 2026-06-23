@@ -107,4 +107,13 @@ public class OportunidadeService {
             System.out.println("O estudante '" + discente.getNome() + "' não estava inscrito nesta oportunidade.");
         }
     }
+
+    public Oportunidade buscarPorTitulo(String titulo) {
+        for (Oportunidade op : bancoDeOportunidades) {
+            if (op.getTitulo().equalsIgnoreCase(titulo)) {
+                return op;
+            }
+        }
+        return null;
+    }
 }
