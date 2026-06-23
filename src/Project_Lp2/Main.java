@@ -117,7 +117,10 @@ public class Main {
             System.out.println("\n--- MENU DE CURSOS E GRUPOS ---");
             System.out.println("1. Listar Cursos Disponíveis");
             System.out.println("2. Listar Grupos de Estudo/Pesquisa");
-            System.out.println("3. Criar Novo Grupo de Pesquisa");
+            System.out.println("3. Criar Novo Curso");
+            System.out.println("4. Criar Novo Grupo de Pesquisa");
+            System.out.println("5. Listar Membros de Um Grupo");
+            System.out.println("6. Gerenciar Cargos No Grupo");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.print("Escolha: ");
 
@@ -132,13 +135,57 @@ public class Main {
                     grupoService.listarGruposAtivos();
                     break;
                 case 3:
-                    System.out.print("Nome do Grupo: "); 
+                    System.out.println("Nome do Curso: ");
+                    String nomeCurso = scanner.nextLine();
+                    System.out.println("Codigo do Curso: ");
+                    int codCurso = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Carga horaria: ");
+                    int cargaHoraria = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Versao PPC: ");
+                    String versaoPpc = scanner.nextLine();
+                    Curso novoCurso = new Curso(nomeCurso, codCurso, cargaHoraria, versaoPpc);
+                    cursoService.cadastrarCurso(novoCurso);
+                    break;
+                case 4:
+                    System.out.print("Nome do Grupo: ");
                     String nomeG = scanner.nextLine();
-                    System.out.print("Área de Estudo: "); 
+                    System.out.print("Área de Estudo: ");
                     String areaG = scanner.nextLine();
                     Grupo novoGrupo = new Grupo(nomeG, areaG, "grupo@ufma.br", "Grupo de pesquisa", coordenadorGeral);
                     grupoService.registrarGrupo(novoGrupo);
                     grupoService.aprovarGrupo(novoGrupo);
+                    break;
+                case 5:
+                    System.out.println("Informe o nome do Grupo: ");
+                    String nomeGrupo = scanner.nextLine();
+                    grupoService.listarUsuariosdeUmGrupo(nomeGrupo);
+                    break;
+                case 6:
+                    System.out.println("Informe o nome do Grupo: ");
+                    String textoNomeGrupo = scanner.nextLine();
+                    Grupo uGrupo = grupoService.buscarGrupoPorNome(textoNomeGrupo);
+                    if(uGrupo == null){
+                        System.out.println("Grupo nao encontrado");
+                        break;
+                    }
+                    System.out.println("Email do aluno: ");
+                    String emailAluno = scanner.nextLine();
+                    Usuario uCargo = usuarioService.buscarPorEmail(emailAluno);
+                    if(uCargo == null){
+                        System.out.println("Aluno nao encontrado");
+                        break;
+                    }
+                    System.out.println("Digite o novo cargo: ");
+                    String textoCargo = scanner.nextLine().toUpperCase();
+
+                    try {
+                        Cargos novoCargo = Cargos.valueOf(textoCargo);
+                        grupoService.atribuirCargo(uGrupo, uCargo, novoCargo, coordenadorGeral);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Cargo invalido");
+                    }
                     break;
                 case 0: break;
                 default: System.out.println("Opção inválida!");

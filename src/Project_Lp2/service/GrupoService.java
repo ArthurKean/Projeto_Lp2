@@ -9,6 +9,8 @@ import Project_Lp2.model.enums.StatusGrupo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class GrupoService {
 
@@ -79,5 +81,23 @@ public class GrupoService {
     public void solicitarCriacaoDeNovoGrupo(DiscenteDiretor alunoDiretor, Grupo novoGrupo) {
         System.out.println("O aluno Diretor '" + alunoDiretor.getNome() + "' solicitou a criação do grupo '" + novoGrupo.getNome() + "'. Encaminhado para aprovação do coordenador.");
 
+    }
+    public void listarUsuariosdeUmGrupo(String listGrupo){
+        for(Grupo g: bancoDeGrupos) {
+            if(g.getNome().equalsIgnoreCase(listGrupo)){
+                g.listarMembros();
+                return;
+            }
+        }
+        System.out.println("Grupo nao encontrado");
+    }
+
+    public Grupo buscarGrupoPorNome(String nome){
+        for(Grupo g: bancoDeGrupos){
+            if(g.getNome().equalsIgnoreCase(nome)){
+                return g;
+            }
+        }
+        return null;
     }
 }
